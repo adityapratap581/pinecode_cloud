@@ -17,12 +17,15 @@ from sentence_transformers import SentenceTransformer
 from pinecone import Pinecone, ServerlessSpec
 from langchain.text_splitter import TokenTextSplitter
 from dotenv import load_dotenv
+import streamlit as st
+
 
 load_dotenv()
 
 
 # Pinecone initialization
-open_ai_cred = os.environ.get("OPEN_AI")
+# open_ai_cred = os.environ.get("OPEN_AI")
+open_ai_cred = st.secrets["OPEN_AI"]
 os.environ["OPENAI_API_KEY"] = open_ai_cred
 
 

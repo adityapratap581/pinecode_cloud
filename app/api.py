@@ -11,6 +11,8 @@ from pinecone import Pinecone, ServerlessSpec
 import tempfile
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
+import streamlit as st
+
 
 app = FastAPI()
 load_dotenv()
@@ -21,7 +23,8 @@ class QueryRequest(BaseModel):
 class QueryResponse(BaseModel):
     result: str
 
-pinecone_cred = os.environ.get("PINECONE_CREDENTIAL")
+# pinecone_cred = os.environ.get("PINECONE_CREDENTIAL")
+pinecone_cred = st.secrets["PINECONE_CREDENTIAL"]
 os.environ["PINECONE_API_KEY"] = pinecone_cred
 pc = Pinecone(api_key=pinecone_cred)
 index_name = 'boldpenguin'
